@@ -1,12 +1,12 @@
 import json
 import time
 import re
+import jieba
 from matplotlib.image import imread
 from wordcloud import wordcloud
 from bilibili_api import video
 import requests
 from bs4 import BeautifulSoup
-import jieba
 
 
 def getDM(bvid):
@@ -37,7 +37,6 @@ def getDM(bvid):
 
 
 def createWordCloud(data, font_path, mask_path, background_color, max_words):
-    # 逻辑待修改
 
     if background_color == "-1":
         background_color = "white"
@@ -55,9 +54,6 @@ def createWordCloud(data, font_path, mask_path, background_color, max_words):
         w = wordcloud.WordCloud(background_color=background_color, font_path=font_path,
                                 max_words=int(max_words))
     else:
-        font_path = "C:\\Users\\10486\\AppData\\Local\\Packages\\Microsoft.Office.Desktop_8wekyb3d8bbwe\\LocalCache" \
-                    "\\Local\\Microsoft\\FontCache\\4\\CloudFonts\\STXingkai\\32439372444.ttf"
-        mask_path = "C:\\Users\\10486\\Desktop\\图库\\24c8cb7fca80653848614d7280dda144ac348221.jpg"
         mask = imread(mask_path)
         w = wordcloud.WordCloud(background_color=background_color, mask=mask, font_path=font_path, max_words=int(max_words))
 
